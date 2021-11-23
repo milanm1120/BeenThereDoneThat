@@ -7,8 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-User.create([
-    {first_name: "Milan", last_name: "Mody", email: "milanm1120@gmail.com", password: "1234"},
-    {first_name: "Bob", last_name: "Test", email: "bob@bob.com", password: "1234"},
-    {first_name: "Joe", last_name: "Test", email: "joe@joe.com", password: "1234"}
-])
+# User.create([
+#     {first_name: "Milan", last_name: "Mody", email: "milanm1120@gmail.com", password: "1234"},
+#     {first_name: "Bob", last_name: "Test", email: "bob@bob.com", password: "1234"},
+#     {first_name: "Joe", last_name: "Test", email: "joe@joe.com", password: "1234"}
+# ])
+
+# Destination.create([
+#     {city: "New York City", country: "United States of America"},
+#     {city: "London", country: "England"},
+#     {city: "Paris", country: "France"},
+#     {city: "Mumbai", country: "India"},
+#     {city: "Tokyo", country: "Japan"}
+# ])
