@@ -9,7 +9,7 @@ class PinsController < ApplicationController
     end
 
     def show
-
+        @pin = Pin.find_by_id(params[:id])
     end
 
     def create
