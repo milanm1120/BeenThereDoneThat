@@ -22,11 +22,12 @@ class PinsController < ApplicationController
     end
 
     def edit
-
+        @pin = Pin.find_by_id(params[:id])
     end
 
     def update
-
+        @pin = Pin.find_by_id(params[:id])
+        @pin.update(params[:pin])
     end
 
     def destroy
