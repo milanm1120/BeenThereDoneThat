@@ -3,3 +3,5 @@
 <h3><%= @pin.destination.city %>, <%= @pin.destination.country %></h3>
 Date Visited: <%= @pin.date %></br>
 Rating: <%= @pin.rating %>
+
+<%= button_to 'Delete Pin', pin_path(@pin), :method => :delete %>
