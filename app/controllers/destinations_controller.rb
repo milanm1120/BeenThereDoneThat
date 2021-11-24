@@ -6,6 +6,7 @@ class DestinationsController < ApplicationController
 
     def new     #render a new form
         @destination = Destination.new
+        @destination.pins.build
     end
 
     def show
