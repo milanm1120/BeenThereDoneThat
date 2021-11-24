@@ -6,6 +6,7 @@ class PinsController < ApplicationController
 
     def new     #render a new form
         @pin = Pin.new
+        @pin.build_destination
     end
 
     def show
@@ -38,7 +39,7 @@ class PinsController < ApplicationController
 
     private
     def pin_params      #strong params which permits fields being created
-        params.require(:pin).permit(:rating, :date, :user_id, :destination_id)
+        params.require(:pin).permit(:rating, :date, :user_id, :destination_id, destination_attributes: [:city, :country])
     end
 
 
