@@ -14,13 +14,11 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        byebug
-        # if @user.save
-        #     session[:user_id] = @user.id            #sessions[:user_id] is used to login
-        #     redirect_to user_path(@user)
-        # else
-        #     render :new
-        # end
+        if @user.save
+            redirect_to user_path(@user)
+        else
+            render :new
+        end
     end
 
     def edit
