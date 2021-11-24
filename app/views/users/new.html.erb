@@ -1,0 +1,11 @@
+<h1>Users#new</h1>
+
+<h1> Lets Get You Registered </h1>
+
+<%= form_with(model: @user) do |f| %>
+    First Name: <%= f.text_field :first_name%></br>
+    Last Name: <%= f.text_field :last_name%></br>
+    Email: <%= f.text_field :email %></br>
+    Password: <%= f.password_field :password %></br></br>
+    <%= f.submit "Register" %>
+<% end %>
