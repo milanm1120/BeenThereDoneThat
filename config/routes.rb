@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  resources :pins
-  resources :destinations
   resources :users
+
+  resources :destinations do    #nested routes go in one direction, parent to child
+    resources :pins
+  end
+
+  resources :pins #for anything non-nested
+  
     # get '/users', to: 'user#index'
     # get '/users/:id', to: 'users#show'
     # get '/users/new', to: 'user#new'
