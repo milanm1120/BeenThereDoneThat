@@ -10,7 +10,7 @@ class DestinationsController < ApplicationController
     end
 
     def show
-        @destination = Destination.find_by_id(params[:id])
+        find_destination
     end
 
     def create
@@ -23,16 +23,16 @@ class DestinationsController < ApplicationController
     end
 
     def edit
-        @destination = Destination.find_by_id(params[:id])
+        find_destination
     end
 
     def update
-        @destination = Destination.find_by_id(params[:id])
+        find_destination
         @destination.update(params[:destination])
     end
 
     def destroy
-        @destination = Destination.find_by_id(params[:id])
+        find_destination
         @destination.destroy
             redirect_to destinations_path
     end
@@ -40,6 +40,10 @@ class DestinationsController < ApplicationController
     private
     def destination_params      #strong params which permits fields being created
         params.require(:destination).permit(:city, :country)
+    end
+
+    def find_destination
+        @destination = Destination.find_by_id(params[:id])
     end
 
 end

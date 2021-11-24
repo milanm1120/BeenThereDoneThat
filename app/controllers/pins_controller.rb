@@ -10,7 +10,7 @@ class PinsController < ApplicationController
     end
 
     def show
-        @pin = Pin.find_by_id(params[:id])
+        find_pin
     end
 
     def create
@@ -23,16 +23,16 @@ class PinsController < ApplicationController
     end
 
     def edit
-        @pin = Pin.find_by_id(params[:id])
+        find_pin
     end
 
     def update
-        @pin = Pin.find_by_id(params[:id])
+        find_pin
         @pin.update(params[:pin])
     end
 
     def destroy
-        @pin = Pin.find_by_id(params[:id])
+        find_pin
         @pin.destroy
             redirect_to pins_path
     end
@@ -40,6 +40,10 @@ class PinsController < ApplicationController
     private
     def pin_params      #strong params which permits fields being created
         params.require(:pin).permit(:rating, :date, :user_id, :destination_id, destination_attributes: [:city, :country])
+    end
+
+    def find_pin
+        @pin = Pin.find_by_id(params[:id])
     end
 
 

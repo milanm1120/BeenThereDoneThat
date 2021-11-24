@@ -4,15 +4,3 @@
 
 <%= render partial: "layouts/error", locals: { object: @destination} %>
 
-<%= form_with(model: @destination) do |f| %>
-    City: <%= f.text_field :city %></br>
-    Country :<%= f.text_field :country %><br>
-
-        <p>Add New Pin</p>
-        <%= f.fields_for :pins do |p| %>
-            Date Visited: <%= f.date_field :date %></br>
-            Rating: <%= f.number_field :rating, min: 1, max: 5 %></br>
-        <% end %>
-    
-    <%= f.submit "Drop Pin" %>
-    <% end %>

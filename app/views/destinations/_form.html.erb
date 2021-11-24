@@ -1,0 +1,24 @@
+<% if @destination.errors.any? %>           
+  <div id="error_explanation">
+    <h2><%= pluralize(@destination.errors.count, "error") %> prohibited from being saved:</h2>
+
+    <ul>
+      <% @destination.errors.each do |error| %>
+        <li><%= error.full_message %></li> 
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @destination) do |f| %>
+    City: <%= f.text_field :city %></br>
+    Country :<%= f.text_field :country %><br>
+
+        <p>Add New Pin</p>
+        <%= f.fields_for :pins do |p| %>
+            Date Visited: <%= f.date_field :date %></br>
+            Rating: <%= f.number_field :rating, min: 1, max: 5 %></br>
+        <% end %>
+    
+    <%= f.submit "Drop Pin" %>
+    <% end %>
