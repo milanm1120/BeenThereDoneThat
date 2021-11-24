@@ -2,6 +2,8 @@
 
 <h1> Lets Get You Registered </h1>
 
+<%= render partial: "layouts/error", locals: { object: @user} %>
+
 <%= form_with(model: @user) do |f| %>
     First Name: <%= f.text_field :first_name%></br>
     Last Name: <%= f.text_field :last_name%></br>

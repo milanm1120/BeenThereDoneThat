@@ -1,0 +1,9 @@
+<h1>Destination#Index</h1>
+
+<% if @destinations.length == 0 %>
+    No Destinations Yet
+<% else %>
+    <% @destinations.each do |p| %>
+        <%= p.city %>, <%= p.country %></br></br>
+    <% end %></br>
+<% end %>
