@@ -1,11 +1,22 @@
 Rails.application.routes.draw do
+  #Custom Routes (ALWAYS ABOVE RESOURCES GENERATED ROUTES!)
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/login', to: 'sessions#destroy'
+  
+  
+  get 'sessions/new'
+  get 'sessions/create'
+  get 'sessions/destroy'
   resources :users
 
   resources :destinations do    #nested routes go in one direction, parent to child
-    resources :pins
+    resources :pins, shallow: true #shallow creates an index, new and create on through destinations
   end
 
-  resources :pins #for anything non-nested
+  resources :pins, only: [:index, :new, :create] #for anything non-nested
   
     # get '/users', to: 'user#index'
     # get '/users/:id', to: 'users#show'
