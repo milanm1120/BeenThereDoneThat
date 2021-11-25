@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   #Custom Routes (ALWAYS ABOVE RESOURCES GENERATED ROUTES!)
+  root to: 'application#welcome'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get '/login', to: 'sessions#new'

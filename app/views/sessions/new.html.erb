@@ -1,2 +1,10 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1> Please Enter Your Login Information Below</h1>
+
+    <%= form_for :user do |f| %>
+        Email: <%= f.text_field :email %></br>
+        Password: <%= f.password_field :password %></br></br>
+        <%= f.submit "Log In" %>
+        <% end %>
+        </br>
+        
+    <%= button_to 'Back To Welcome Page', root_path, :method => :get %>
