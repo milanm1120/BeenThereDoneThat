@@ -1,15 +1,19 @@
-<%= form_with(model: @pin) do |f| %>
+<%= form_for([@destination, @pin]) do |f| %>
     Date Visited: <%= f.date_field :date %></br>
     Rating: <%= f.number_field :rating, min: 1, max: 5 %></br>
     User :<%= f.number_field :user_id %><br>
 
-    Country: <%= f.collection_select(:destination_id, Destination.all, :id, :country, prompt: true) %>
+    <!-- Country: <%= f.collection_select(:destination_id, Destination.all, :id, :country, prompt: true) %> -->
 
+    <% if @destination %>
+        <%= f.hidden_field :destination_id, value: @destination.id %>
+    <% else %>
         <p>Add New Country</p>                              <!-- nested form name="pin[destination][attribute]" -->
         <%= f.fields_for :destination do |d| %>
             City: <%= d.text_field :city %></br>
             Country: <%= d.text_field :country %></br>
         <% end %>
+    <% end %>
     
     <%= f.submit "Drop Pin" %>
-    <% end %>
+<% end %>

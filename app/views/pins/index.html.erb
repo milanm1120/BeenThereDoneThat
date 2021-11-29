@@ -1,6 +1,21 @@
 <h1>Pins#Index</h1>
 
 
+<% if @destination %>
+    <%= @destination.city %>, <%= @destination.country %>
+<% else %>
+    <h1> All Pins </h1>
+<% end %>
+
+<% if @pin %>
+    <%= link_to "New Pin", new_destination_pin_path %>
+<% else %>
+    <%= link_to "New Pin", new_pin_path %>
+<% end %>
+
+
+
+<!--
 <% if @pins.length == 0 %>
     No Pins Yet
 <% else %>
@@ -9,4 +24,5 @@
         Date: <%= p.date %></br>
         Destination: <%= p.destination.city %>, <%= p.destination.country %></br></br>
     <% end %></br>
-<% end %>
+<% end %> 
+ -->
