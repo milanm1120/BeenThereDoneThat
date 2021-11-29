@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy'
+  post '/logout', to: 'sessions#destroy'
+
+  get '/auth/:provider/callback', to: 'sessions#omniauth'
   
   
   # get 'sessions/new'
@@ -19,15 +21,6 @@ Rails.application.routes.draw do
   resources :destinations do    #nested routes go in one direction, parent to child
     resources :pins, shallow: true #shallow creates an index, new and create only through destinations
   end
-
-  
-    # get '/users', to: 'user#index'
-    # get '/users/:id', to: 'users#show'
-    # get '/users/new', to: 'user#new'
-    # post '/users', to: 'users#create'
-    # get '/users/:id/edit', to: 'user#new'
-    # patch '/users/:id', to: 'users#update'
-    # delete '/users/:id', to: 'users#destroy'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
