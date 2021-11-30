@@ -18,24 +18,30 @@ class SessionsController < ApplicationController
   end
 
   def omniauth
-      user = User.find_or_create_by(uid: request.env['omniauth.auth'][:uid], provider: request.env['omniauth.auth'][:provider]) do |u|            #auth is a private method
-        u.first_name = request.env['omniauth.auth']['info']['first_name']
-        u.last_name = request.env['omniauth.auth']['info']['last_name']
-        u.email = request.env['omniauth.auth']['info']['email']
+    user = User.find_or_create_by(uid: auth['uid']) do |u|            #auth is a private method
+        u.first_name = auth['info']['first_name']
+        u.last_name = auth['info']['last_name']
+        u.email = auth['info']['email']
         u.password = SecureRandom.hex(20)
       end
-    if user.valid?
-        session[:user_id] = user.id
-        flash[:message] = "Successful Login!"
-        redirect_to user_path
-    else
-        redirect_to login_path
-    end
+      if user.valid?
+          session[:user_id] = user.id
+          flash[:message] = "Successful Login!"
+          redirect_to destinations_path
+      else
+          redirect_to destinations_path
+      end
   end
 
   def destroy
-    session.delete(:user_id)
-    redirect_to login_path
+    session.delete :user_id
+    redirect_to root_path
   end
+
+  private
+
+    def  auth
+        request.env['omniauth.auth']
+    end
 
 end
