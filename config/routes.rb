@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   post '/signup', to: 'users#create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-  post '/logout', to: 'sessions#destroy'
+  get '/logout', to: 'sessions#destroy'
 
   get '/auth/:provider/callback', to: 'sessions#omniauth'
   
@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   # get 'sessions/new'
   # get 'sessions/create'
   # get 'sessions/destroy'
-  resources :users
+  resources :users do 
+    resources :pins
+  end
   
   resources :pins, only: [:index, :new, :create] #for anything non-nested
   
