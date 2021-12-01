@@ -18,24 +18,25 @@ class SessionsController < ApplicationController
   end
 
   def omniauth
-    user = User.find_or_create_by(uid: auth['uid']) do |u|            #auth is a private method
+    @user = User.find_or_create_by(uid: auth['uid']) do |u|            #auth is a private method
         u.first_name = auth['info']['first_name']
         u.last_name = auth['info']['last_name']
         u.email = auth['info']['email']
         u.password = SecureRandom.hex(20)
       end
-      if user.valid?
-          session[:user_id] = user.id
+      if @user.valid?
+          session[:user_id] = @user.id
           flash[:message] = "Successful Login!"
-          redirect_to destinations_path
+          redirect_to current_user
       else
-          redirect_to destinations_path
+          redirect_to '/login'
       end
   end
 
   def destroy
     session.delete :user_id
     redirect_to root_path
+    flash[:message] = "Successfully Logged Out"
   end
 
   private

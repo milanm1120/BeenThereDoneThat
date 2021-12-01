@@ -14,10 +14,8 @@ Rails.application.routes.draw do
   # get 'sessions/new'
   # get 'sessions/create'
   # get 'sessions/destroy'
-  resources :users do 
-    resources :pins
-  end
-  
+  resources :users
+
   resources :pins, only: [:index, :new, :create] #for anything non-nested
   
   resources :destinations do    #nested routes go in one direction, parent to child

@@ -1,1 +1,8 @@
 <h1> Users#show</h1>
+
+<h1>Hello <%= current_user.first_name %>! Here are all your travel pins!</h1>
+
+<h3>Pins</h3>
+    <% current_user.pins.each do |pin| %>
+        <%= link_to [pin.destination.city, pin.destination.country, pin.date], pin_path(pin) %></br>
+    <% end %>

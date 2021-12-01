@@ -8,7 +8,7 @@ class Pin < ApplicationRecord
   def destinations_attributes=(destinations_attributes)     #custom writer
     destinations_attributes.values.each do |destination|
       if !destination[:name].empty?
-        self.destinations << Destination.find_or_create_by(country: caterogy[:name])
+        self.destination = Destination.find_or_create_by(country: caterogy[:name])
       end
     end
   end

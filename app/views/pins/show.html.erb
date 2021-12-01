@@ -5,3 +5,4 @@ Date Visited: <%= @pin.date %></br>
 Rating: <%= @pin.rating %>
 
 <%= button_to 'Delete Pin', pin_path(@pin), :method => :delete %>
+<%= button_to 'Back', user_path, :method => :get %>

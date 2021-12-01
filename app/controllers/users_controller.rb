@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 
-    def index
-        @users = User.all
-    end
+    # def index
+    #     @users = User.all
+    # end
 
     def new                     #render a signup form
         if !logged_in?
@@ -12,9 +12,8 @@ class UsersController < ApplicationController
         end
     end
 
-    def show
-        
-    end
+    # def show
+    # end
 
     def create                  #processing signup form
         @user = User.new(user_params)
@@ -27,15 +26,23 @@ class UsersController < ApplicationController
     end
 
     def edit
-
+        find_user
     end
 
     def update
-
+        find_user
+        @user.update(user_params)
+        if @user.valid?
+            redirect_to users_path(@user)
+        else
+            render 'user/#{@user.id}/edit'
+        end
     end
 
     def destroy
-
+        find_user
+        @user.destroy
+            redirect_to root_path
     end
 
     private
@@ -44,7 +51,7 @@ class UsersController < ApplicationController
     end
 
     def find_user
-        
+        @user = User.find_by_id(params[:id])
     end
 
 end
