@@ -5,6 +5,6 @@ class Destination < ApplicationRecord
     accepts_nested_attributes_for :pins
 
     def city_country
-        "#{city}, #{country}"
+        "#{self.city}, #{self.country}"
     end
 end

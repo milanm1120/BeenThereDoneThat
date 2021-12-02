@@ -4,5 +4,5 @@
 
 <h3>Pins</h3>
     <% current_user.pins.each do |pin| %>
-        <%= link_to [pin.destination.city, pin.destination.country, pin.date], pin_path(pin) %></br>
+        <%= link_to pin.destination.city_country, pin_path(pin) %></br>
     <% end %>

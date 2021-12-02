@@ -1,7 +1,11 @@
 <%= form_for([@destination, @pin]) do |f| %>
+
     Date Visited: <%= f.date_field :date %></br>
     Rating: <%= f.number_field :rating, min: 1, max: 5 %></br>
-
+    </br>
+    Select Existing Destination: <%= f.collection_select(:destination_id, Destination.all, :id, :city_country, prompt: true) %><br>
+    </br>
+    - OR - 
 
     <% if @destination %>
         <%= f.hidden_field :destination_id, value: @destination.id %>
@@ -12,8 +16,7 @@
             Country: <%= d.text_field :country %></br> 
         <% end %>
     <% end %>
-
-    Select Existing Country: <%= f.collection_select(:destination_id, Destination.all, :id, :city_country, prompt: true) %><br>
+    
     
     <%= f.submit "Drop Pin" %>
 <% end %>
