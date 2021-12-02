@@ -2,7 +2,11 @@
 
 <h1>Hello <%= current_user.first_name %>! Here are all your travel pins!</h1>
 
-<h3>Pins</h3>
-    <% current_user.pins.each do |pin| %>
-        <%= link_to pin.destination.city_country, pin_path(pin) %></br>
-    <% end %>
+<% if current_user.pins.empty? %>
+    <h3> You Don't Have Any Pins Yet! </h3>
+<% else %>
+    <h3>Pins</h3>
+        <% current_user.pins.each do |pin| %>
+            <%= link_to pin.destination.city_country, pin_path(pin) %></br>
+        <% end %>
+<% end %>

@@ -11,62 +11,21 @@ class PinsController < ApplicationController
     end
 
     def new     #render a new form
-        @pin = Pin.new
-        # if params[:destination_id]
-        #     @destination = Destination.find_by(params[:destination_id])
-        #     @pin = @destination.pins.build
-        # else
-        #     @pin = Pin.new
-        #     @pin.build_destination
-        # end
+        @pin = Pin.new                              #.build helps buidling associated objects
+        @pin.build_destination
     end
 
     def show
+        @comment = Comment.new
     end
 
     def create
-        # if !params[:pin][:destination_id].empty?
-        #     destination_id = params[:pin][:destination_id]
-            
-        # else
-        #     destination = Destination.create!({
-        #         city: params[:pin][:destination][:city],
-        #         country: params[:pin][:destination][:country]
-        #     })
-        #     destination_id = destination.id 
-        # end
-
-        # @pin = Pin.new({
-        #     user: current_user,
-        #     rating: params[:pin][:rating],
-        #     date: params[:pin][:date],
-        #     destination_id: destination.id
-        # })
-
-        # if @pin.save 
-        #     redirect_to pin_path(@pin)
-        # else
-        #     redirect_to new_pin_path
-        # end
-
-        # if params[:destination_id]
-        #     @destination = Destination.find_by(params[:destination_id])
-        #     @pin = @destination.pins.build(pin_params)
-        # else
-        #     @pin = Pin.new(pin_params)
-        # end
-        
-        # if @pin.save
-        #     redirect_to pin_path(@pin)
-        # else
-        #     render :new
-        # end
-
         @pin = current_user.pins.build(pin_params)
+        byebug
         if @pin.save
-            redirect_to pin_path(@pin)
+                redirect_to user_path(current_user, @pin)
         else
-            redirect_to new_pin_path(current_user)
+                redirect_to new_pin_path
         end
     end
 
@@ -89,7 +48,7 @@ class PinsController < ApplicationController
 
     private
     def pin_params      #strong params which permits fields being created
-        params.require(:pin).permit(:rating, :date, :user_id, :destination_id, destinations_attributes: [:city, :country])
+        params.require(:pin).permit(:rating, :date, :user_id, :destination_id, destination_attributes: [:city, :country])
     end
 
     def find_pin

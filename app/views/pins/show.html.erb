@@ -7,3 +7,10 @@ Rating: <%= @pin.rating %>
 <%= button_to 'Edit Pin', edit_pin_path(@pin), :method => :get %>
 <%= button_to 'Delete Pin', pin_path(@pin), :method => :delete %>
 <%= button_to 'Back', user_path, :method => :get %>
+
+<%= form_for(@comment) do |f| %>
+    Add a comment:
+    <%= f.text_field :comment %>
+
+    <%= f.submit "Submit", id: "submit"%>
+<% end %>

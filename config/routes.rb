@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   #Custom Routes (ALWAYS ABOVE RESOURCES GENERATED ROUTES!)
   root to: 'application#welcome'
 
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
   # get 'sessions/create'
   # get 'sessions/destroy'
   resources :users
+  resources :comments
 
   resources :pins, only: [:index, :new, :create] #for anything non-nested
   

@@ -39,7 +39,7 @@ class DestinationsController < ApplicationController
 
     private
     def destination_params      #strong params which permits fields being created
-        params.require(:destination).permit(:city, :country)
+        params.require(:destination).permit(:city, :country, pins_attributes: [:rating, :date])
     end
 
     def find_destination
