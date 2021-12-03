@@ -1,7 +1,7 @@
 class DestinationsController < ApplicationController
 
     def index
-        @destinations = Destination.all
+        @destinations = Destination.order_by_country           #order_by_country is a scope method defined in models/estination.rb
     end
 
     def new     #render a new form
