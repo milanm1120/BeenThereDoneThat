@@ -1,8 +1,6 @@
 <h1>Show#Pin</h1>
 
-<h3><%= @pin.destination.city %>, <%= @pin.destination.country %></h3>
-Date Visited: <%= @pin.date %></br>
-Rating: <%= @pin.rating %>
+<%= render partial: "pin", locals: {p: @pin} %>
 
 <%= button_to 'Edit Pin', edit_pin_path(@pin), :method => :get %>
 <%= button_to 'Delete Pin', pin_path(@pin), :method => :delete %>

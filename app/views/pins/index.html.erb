@@ -9,11 +9,8 @@
 
 <%= render partial: "pin", collection: @pins, as: :p %>
 
-<% if @pin %>
+<% if @destination %>
     <%= link_to "New Pin", new_destination_pin_path %>
 <% else %>
     <%= link_to "New Pin", new_pin_path %>
 <% end %>
-
-
-<%= button_to 'Logout', logout_path %>

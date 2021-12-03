@@ -4,7 +4,10 @@ class ApplicationController < ActionController::Base
 
     def welcome         #root route
         # if !logged_in?
-        #     redirect_to login_path
-        
+        #     redirect_to root_path
+        # else
+        #     redirect_to user_path(@user)
+        # end
     end
+
 end

@@ -1,3 +1,5 @@
 <h1>Destination#show</h1>
 
-<%= @destination.city %>, <%= @destination.country %>
+<% @destination.pins.each do |p| %>
+    <%= p.destination.city %>
+    <% end %>

@@ -4,7 +4,6 @@
     No Destinations Yet
 <% else %>
     <% @destinations.each do |d| %>
-        <%= d.city_country %><br>
-      
+        <%= link_to d.city_country, destination_pins_path(d) %><br>
     <% end %></br>
 <% end %>
