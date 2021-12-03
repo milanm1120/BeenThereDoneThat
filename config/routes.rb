@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :comments
   #Custom Routes (ALWAYS ABOVE RESOURCES GENERATED ROUTES!)
   root to: 'application#welcome'
 
@@ -16,13 +15,15 @@ Rails.application.routes.draw do
   # get 'sessions/create'
   # get 'sessions/destroy'
   resources :users
-  resources :comments
+  # resources :comments
 
   resources :pins, only: [:index, :new, :create] #for anything non-nested
   
   resources :destinations do    #nested routes go in one direction, parent to child
     resources :pins, shallow: true #shallow creates an index, new and create only through destinations
   end
+
+  
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

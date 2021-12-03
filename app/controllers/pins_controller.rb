@@ -2,8 +2,7 @@ class PinsController < ApplicationController
     before_action :find_pin, except: [:index, :new, :create]
 
     def index
-        if params[:destination_id]
-            @destination = Destination.find_by(params[:destination_id])
+        if params[:destination_id] && @destination = Destination.find_by(id: params[:destination_id])
             @pins = @destination.pins
         else
             @pins = Pin.all
@@ -11,8 +10,12 @@ class PinsController < ApplicationController
     end
 
     def new     #render a new form
-        @pin = Pin.new                              #.build helps buidling associated objects
-        @pin.build_destination
+        if params[:destination_id] && @destination = Destination.find_by(id: params[:destination_id])
+            @pin = @destination.pins.build                           #.build helps buidling associated objects
+        else
+            @pin = Pin.new
+            @pin.build_destination
+        end
     end
 
     def show
@@ -21,12 +24,26 @@ class PinsController < ApplicationController
 
     def create
         @pin = current_user.pins.build(pin_params)
-        byebug
         if @pin.save
                 redirect_to user_path(current_user, @pin)
         else
                 redirect_to new_pin_path
         end
+
+            #----------------------------------
+                        
+        # if params[:destination_id]
+        #     @destination = Destination.find_by(id: params[:destination_id])
+        #     @pin = @destination.pins.build(pin_params)
+        #   else 
+        #     @pin = Pin.new(pin_params)
+        #   end 
+
+        #   if @pin.save 
+        #     redirect_to destination_pins_path(@pin.destination)
+        #   else 
+        #     render :new
+        #   end 
     end
 
     def edit

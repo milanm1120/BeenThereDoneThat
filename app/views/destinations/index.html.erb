@@ -3,7 +3,8 @@
 <% if @destinations.length == 0 %>
     No Destinations Yet
 <% else %>
-    <% @destinations.each do |p| %>
-        <%= p.city %>, <%= p.country %></br></br>
+    <% @destinations.each do |d| %>
+        <%= d.city_country %><br>
+      
     <% end %></br>
 <% end %>

@@ -43,7 +43,7 @@ class DestinationsController < ApplicationController
     end
 
     def find_destination
-        @destination = Destination.find_by_id(params[:id])
+        @destination = Destination.find_by(params[:destination_id])
     end
 
 end

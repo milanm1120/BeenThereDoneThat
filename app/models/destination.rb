@@ -1,10 +1,15 @@
 class Destination < ApplicationRecord
     has_many :pins
     has_many :users, through: :pins
-    validates :city, :country, presence: true
+    validates :city, presence: true, uniqueness: true
+    validates :country, presence: true
     accepts_nested_attributes_for :pins
 
     def city_country
-        "#{self.city}, #{self.country}"
+        "#{city}, #{country}"
+    end
+
+    def number_of_visits
+        @destination.size
     end
 end

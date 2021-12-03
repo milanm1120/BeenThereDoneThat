@@ -1,6 +1,6 @@
 class Pin < ApplicationRecord
-  belongs_to :user
-  belongs_to :destination
+  belongs_to :user, optional: true
+  belongs_to :destination, optional: true
   validates :rating, numericality: {greater_than: 0, less_than: 6}
   validates :date, presence: true
   accepts_nested_attributes_for :destination

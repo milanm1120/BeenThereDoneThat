@@ -7,6 +7,8 @@
     <h1> All Pins </h1>
 <% end %>
 
+<%= render partial: "pin", collection: @pins, as: :p %>
+
 <% if @pin %>
     <%= link_to "New Pin", new_destination_pin_path %>
 <% else %>

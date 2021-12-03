@@ -1,17 +1,20 @@
-<%= form_for([@destination, @pin]) do |f| %>
+<%= form_for(@pin) do |f| %>
     Date Visited: <%= f.date_field :date %></br>
     Rating: <%= f.number_field :rating, min: 1, max: 5 %></br>
 
+<% if @destination %>
+    <% f.hidden_field :destination_id, value: @destination.id %>     <!-- conditional statement to show/not show "add new destination form" depending on route -->
+<% else %>
+    Select Existing Country: <%= f.collection_select(:destination_id, Destination.all, :id, :city_country, prompt: true) %><br>
 
-   
         <p>Add New Destination</p>                              <!-- nested form name="pin[destination][attribute]" -->
         <%= f.fields_for :destination do |d| %>
             City: <%= d.text_field :city %></br>
             Country: <%= d.text_field :country %></br> 
         <% end %>
-
-                - OR-
-                Select Existing Country: <%= f.collection_select(:destination_id, Destination.all, :id, :city_country, prompt: true) %><br>
+<% end %>
+        - OR-
+        
     
     
     <%= f.submit "Drop Pin" %>
