@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    before_action :find_user, except: [:new, :show, :create]
 
     # def index
     #     @users = User.all
@@ -27,11 +28,9 @@ class UsersController < ApplicationController
     end
 
     def edit
-        find_user
     end
 
     def update
-        find_user
         @user.update(user_params)
         if @user.valid?
             redirect_to users_path(@user)
@@ -41,7 +40,6 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        find_user
         @user.destroy
             redirect_to root_path
     end
