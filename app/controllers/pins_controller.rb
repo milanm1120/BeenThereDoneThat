@@ -25,41 +25,26 @@ class PinsController < ApplicationController
     end
 
     def create
-        # if params[:destination_id]
-        #     @destination = Destination.find_by(id: params[:destination_id])
-        #     @pin= @destination.pins.build(pin_params)
-        # else
-        #     @pin = Pin.new(pin_params)
-        # end
-
-        # if @pin.save
-        #     redirect_to pin_path(@pin)
-        # else
-        #     render :new
-        # end
+        if params[:destination_id]
+            @destination = Destination.find_by(id: params[:destination_id])
+            @pin= @destination.pins.build(pin_params)
+        else
+            @pin = Pin.new(pin_params)
+        end
+        byebug
+        if @pin.save
+            redirect_to pin_path(@pin)
+        else
+            render :new
+        end
             #-----------------------------------
 
-        @pin = current_user.pins.build(pin_params)
-        if @pin.save
-                redirect_to user_path(current_user, @pin)
-        else
-                redirect_to new_pin_path
-        end
-
-            #----------------------------------
-                        
-        # if params[:destination_id]
-        #     @destination = Destination.find_by(id: params[:destination_id])
-        #     @pin = @destination.pins.build(pin_params)
-        #   else 
-        #     @pin = Pin.new(pin_params)
-        #   end 
-
-        #   if @pin.save 
-        #     redirect_to destination_pins_path(@pin.destination)
-        #   else 
-        #     render :new
-        #   end 
+        # @pin = current_user.pins.build(pin_params)
+        # if @pin.save
+        #         redirect_to user_path(current_user, @pin)
+        # else
+        #         redirect_to new_pin_path
+        # end
     end
 
     def edit

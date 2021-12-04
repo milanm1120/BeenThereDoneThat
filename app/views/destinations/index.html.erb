@@ -1,9 +1,12 @@
 <h1>Destination#Index</h1>
 
+
 <% if @destinations.length == 0 %>
     No Destinations Yet
 <% else %>
+    <h3>--------------------------------------</h3>
     <% @destinations.each do |d| %>
-        <%= link_to d.city_country, destination_pins_path(d) %><br>
-    <% end %></br>
+        <%= link_to d.city_country, destination_pins_path(d), class: "font_color" %><br><br>
+    <% end %>
+    <h3>--------------------------------------</h3>
 <% end %>

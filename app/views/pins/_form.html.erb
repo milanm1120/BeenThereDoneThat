@@ -9,8 +9,9 @@
         <%= f.hidden_field :destination_id, value: @destination.id %>     <!-- conditional statement to show/not show "add new destination form" depending on route -->
     <% else %>
         
+            <%= f.collection_select(:destination_id, Destination.all, :id, :city_country, prompt: true) %>
 
-            <p>Add New Destination</p>                              <!-- nested form name="pin[destination][attribute]" -->
+            <p>- Add Your Destination -</p>                              <!-- nested form name="pin[destination][attribute]" -->
                 <%= f.fields_for :destination do |d| %>
                 City: <%= d.text_field :city %></br>
                 Country: <%= d.text_field :country %></br> 

@@ -1,13 +1,13 @@
 <nav>
 
     <% if current_user.nil? %>
-            <%= link_to "Log In", login_path %>
-        <%= link_to "Sign Up", signup_path %>
+           <!--  <%= link_to "Log In", login_path %> -->
+           <!--  <%= link_to "Sign Up", signup_path %> -->
     <% else %>
 
-        <%= link_to "Home", current_user %> ||
-        <%= link_to "Create New Pin Index", new_pin_path %> ||
-        <%= link_to "Destinations", destinations_path %> ||
-        <%= link_to 'Logout', logout_path %>
+        <%= link_to "Home", current_user, class: "font_color"%> ||
+        <%= link_to "Create New Pin Index", new_pin_path, class: "font_color" %> ||
+        <%= link_to "Destinations", destinations_path, class: "font_color" %> ||
+        <%= link_to 'Logout', logout_path, class: "font_color" %>
     <% end %>
 </nav>

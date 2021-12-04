@@ -1,4 +1,5 @@
 class DestinationsController < ApplicationController
+    before_action :find_destination, except: [:index, :new, :create]
 
     def index
         @destinations = Destination.order_by_country           #order_by_country is a scope method defined in models/estination.rb
@@ -10,7 +11,7 @@ class DestinationsController < ApplicationController
     end
 
     def show
-        find_destination
+        @destination = Destination.find_by(id: params[:id])
     end
 
     def create
@@ -23,16 +24,13 @@ class DestinationsController < ApplicationController
     end
 
     def edit
-        find_destination
     end
 
     def update
-        find_destination
         @destination.update(params[:destination])
     end
 
     def destroy
-        find_destination
         @destination.destroy
             redirect_to destinations_path
     end

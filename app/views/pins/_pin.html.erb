@@ -1,5 +1,16 @@
 
-    <p>Rating: <%= p.rating %>
+    
 
-    <p>Date: <%= p.date %>
-</p>
+<% if @pins %>
+    User: <%= p.user.email %><br>
+    Pin: <%= p.destination.city %>, <%= p.destination.country %><br>
+    Date Visited: <%= p.date %><br>
+    Rating: <%= p.rating %>
+    <br>
+    <br>
+<% else %>
+    Date Visited: <%= p.date %><br>
+    Rating: <%= p.rating %>
+    <br>
+    <br>
+<% end %>
