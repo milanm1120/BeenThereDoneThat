@@ -12,6 +12,7 @@ class DestinationsController < ApplicationController
 
     def show
         @destination = Destination.find_by(id: params[:id])
+        redirect_to destination_pins_path(@destination)
     end
 
     def create

@@ -1,0 +1,2 @@
+<h3>Select from an Existing Destination:</h3>
+<%= f.collection_select(:destination_id, Destination.all, :id, :city_country, prompt: true) %>
