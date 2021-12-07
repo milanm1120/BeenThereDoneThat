@@ -45,10 +45,13 @@ class PinsController < ApplicationController
             #--------------------------------
         
         @pin = current_user.pins.build(pin_params)
-            if params[:destination_id]
-                @destination = Destination.find_by(id: params[:destination_id])
-                @pin= @destination.pins.build(pin_params)
+            if params[:pin][:destination_id]
+                # byebug
+                @destination = Destination.find_by(id: params[:pin][:destination_id])
+                # @pin= @destination.pins.build(pin_params)
+                @pin.destination = @destination
             end
+            # byebug
             if @pin.save
                 redirect_to pins_path(@pin)
             else
