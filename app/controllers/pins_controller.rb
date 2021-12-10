@@ -1,5 +1,6 @@
 class PinsController < ApplicationController
     before_action :find_pin, except: [:index, :new, :create]
+    before_action :set_user, only: [:new, :index, :create, :destroy]
 
     def index
         if params[:destination_id] && @destination = Destination.find_by(id: params[:destination_id])
@@ -22,41 +23,27 @@ class PinsController < ApplicationController
     end
 
     def create
-        # if params[:destination_id]
-        #     @destination = Destination.find_by(id: params[:destination_id])
-        #     @pin= @destination.pins.build(pin_params)
-        # else
-        #     @pin = Pin.new(pin_params)
-        # end
-
-        # if @pin.save
-        #     redirect_to pin_path(@pin)
-        # else
-        #     render :new
-        # end
-            #-----------------------------------
-
-        # @pin = current_user.pins.build(pin_params)
-        # if @pin.save
-        #         redirect_to user_path(current_user, @pin)
-        # else
-        #         redirect_to new_pin_path
-        # end
+        @pin = current_user.pins.build(pin_params)
+        if @pin.save
+                redirect_to user_path(current_user, @pin)
+        else
+                redirect_to new_pin_path
+        end
             #--------------------------------
 
-        @pin = current_user.pins.build(pin_params)
-            if params[:pin][:destination_id]
-                # byebug
-                @destination = Destination.find_by(id: params[:pin][:destination_id])
-                # @pin= @destination.pins.build(pin_params)
-                @pin.destination = @destination
-            end
-            # byebug
-            if @pin.save
-                redirect_to pin_path(@pin)
-            else
-                render :new
-            end
+        # @pin = current_user.pins.build(pin_params)
+        #     if params[:pin][:destination_id]
+        #         # byebug
+        #         @destination = Destination.find_by(id: params[:pin][:destination_id])
+        #         # @pin= @destination.pin.build(pin_params)
+        #         @pin.destination = @destination
+        #     end
+        #     # byebug
+        #     if @pin.save
+        #         redirect_to pin_path(@pin)
+        #     else
+        #         render :new
+        #     end
     end
 
     def edit
@@ -77,6 +64,10 @@ class PinsController < ApplicationController
     end
 
     private
+    def set_user
+        @user = User.find_by(id: params[:user_id])
+    end
+
     def pin_params      #strong params which permits fields being created
         params.require(:pin).permit(:rating, :date, :user_id, :destination_id, destination_attributes: [:city, :country])
     end

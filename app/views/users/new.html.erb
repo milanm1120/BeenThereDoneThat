@@ -1,6 +1,6 @@
-<h1>Users#new</h1>
+<!-- <h1>Users#new</h1> -->
 
-<h1> Lets Get You Registered </h1>
+<h1> Welcome Traveller, Lets Get You Registered! </h1>
 
 <%= render partial: "layouts/error", locals: { object: @user} %>
 
@@ -11,3 +11,5 @@
     Password: <%= f.password_field :password %></br></br>
     <%= f.submit "Register" %>
 <% end %>
+<br>
+<%= button_to 'Back To Welcome Page', root_path, :method => :get %>

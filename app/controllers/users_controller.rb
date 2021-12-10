@@ -1,16 +1,8 @@
 class UsersController < ApplicationController
     before_action :find_user, except: [:new, :show, :create]
 
-    # def index
-    #     @users = User.all
-    # end
-
     def new                     #render a signup form
-        if !logged_in?
-            @user = User.new
-        else
-            redirect_to root_path
-        end
+        @user = User.new
     end
 
     def show

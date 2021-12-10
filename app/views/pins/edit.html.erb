@@ -1,8 +1,11 @@
 <h2>Edit Your <%= @pin.destination.city %>, <%= @pin.destination.country %>  Pin</h2>
 
-<%= render partial: "form" %>
+<%= form_for([@destination, @pin]) do |f| %>
+    Date Visited: <%= f.date_field :date %></br>
+    Rate This Destination (1:Worst - Best:5): <%= f.number_field :rating, min: 1, max: 5 %></br>
 
-    
-<%= f.submit "Update Pin" %><br>
+<%= button_to "Update Pin", edit_pin_path(@pin), :method => :get %><br>
 <%= button_to 'Delete Pin', pin_path(@pin), :method => :delete %>
 <%= button_to 'Back To Home', pin_path, :method => :get %>
+
+<% end %>

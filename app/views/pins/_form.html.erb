@@ -5,24 +5,19 @@
     Date Visited: <%= f.date_field :date %></br>
     Rate This Destination (1:Worst - Best:5): <%= f.number_field :rating, min: 1, max: 5 %></br>
 
-    <% if @pin.new_record? %>
-    
-        <% if @destination %>
-            <%= f.hidden_field :destination_id, value: @destination.id %>     <!-- conditional statement to show/not show "add new destination form" depending on route -->
-        <% else %>
-            <p>- Pick From An Exisiting Destination -</p>  
-            <%= f.collection_select(:destination_id, Destination.order_by_country, :id, :city_country, prompt: true) %>
-            <p> - OR - </p>
-                    <p>- Create A New Destination -</p>                              <!-- nested form name="pin[destination][attribute]" -->
-                        <%= f.fields_for :destination do |d| %>
-                        City: <%= d.text_field :city %></br>
-                        Country: <%= d.text_field :country %></br> 
-                    <% end %>
-        <% end %>
-                <br>
-            <%= f.submit "Drop Pin" %>
-     
-    <% end %> 
-    
-    
+    <% if @destination %>
+        <%= f.hidden_field :destination_id, value: @destination.id %>     <!-- conditional statement to show/not show "add new destination form" depending on route -->
+    <% else %>
+    <p>- Pick From An Exisiting Destination -</p>  
+    <%= f.collection_select(:destination_id, Destination.order_by_country, :id, :city_country, prompt: true) %>
+    <p> - OR - </p>
+            <p>- Create Destination -</p>                              <!-- nested form name="pin[destination][attribute]" -->
+                <%= f.fields_for :destination do |d| %>
+                City: <%= d.text_field :city %></br>
+                Country: <%= d.text_field :country %></br> 
+            <% end %>
+            
+    <% end %>
+        <br>
+        <%= f.submit "Drop Pin" %>
 <% end %>

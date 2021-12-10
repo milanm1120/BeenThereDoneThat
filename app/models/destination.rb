@@ -9,10 +9,6 @@ class Destination < ApplicationRecord
         "#{city} || #{country}"
     end
 
-    def number_of_visits
-        @destination.size
-    end
-
     scope :order_by_country, -> {order(:country)}      #scope method
     
 end
