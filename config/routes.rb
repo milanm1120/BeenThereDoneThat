@@ -10,12 +10,8 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#omniauth'
   
-  
-  # get 'sessions/new'
-  # get 'sessions/create'
-  # get 'sessions/destroy'
   resources :users
-  # resources :comments
+  
 
   resources :pins, only: [:index, :new, :create] #for anything non-nested
   

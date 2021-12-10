@@ -1,15 +1,8 @@
 <h2>Edit Your <%= @pin.destination.city %>, <%= @pin.destination.country %>  Pin</h2>
 
-<%= render partial: "layouts/error", locals: { object: @pin} %>
+<%= render partial: "form" %>
 
-<%= form_for([@destination, @pin]) do |f| %>
-
-    Date Visited: <%= f.date_field :date %></br>
-    Rating: <%= f.number_field :rating, min: 1, max: 5 %></br>
-    </br>
-
-    <%= f.submit "Update Pin" %><br>
-    <%= button_to 'Delete Pin', pin_path(@pin), :method => :delete %>
-    <%= button_to 'Back', pin_path, :method => :get %>
-<% end %>
-
+    
+<%= f.submit "Update Pin" %><br>
+<%= button_to 'Delete Pin', pin_path(@pin), :method => :delete %>
+<%= button_to 'Back To Home', pin_path, :method => :get %>

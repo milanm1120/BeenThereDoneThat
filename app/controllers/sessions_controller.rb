@@ -1,9 +1,6 @@
 class SessionsController < ApplicationController
 
   def new     #will render the login form, not creating a new object(user), this is to sign-in an existing user.
-    if logged_in?
-      redirect_to root_path
-    end
   end
 
   def create  #processing the login form

@@ -43,7 +43,7 @@ class PinsController < ApplicationController
         #         redirect_to new_pin_path
         # end
             #--------------------------------
-        
+
         @pin = current_user.pins.build(pin_params)
             if params[:pin][:destination_id]
                 # byebug
@@ -53,7 +53,7 @@ class PinsController < ApplicationController
             end
             # byebug
             if @pin.save
-                redirect_to pins_path(@pin)
+                redirect_to pin_path(@pin)
             else
                 render :new
             end
